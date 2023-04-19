@@ -26,8 +26,8 @@ return new class extends Migration
             $table->integer('user_points');
             $table->string('role');
             $table->string('status');
-            $table->string('user_lat');
-            $table->string('user_long');
+            $table->string('user_lat')->nullable();
+            $table->string('user_long')->nullable();
             $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('dep_id');
             $table->integer('emp_coll')->default('1');
