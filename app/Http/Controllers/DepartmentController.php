@@ -26,7 +26,7 @@ class DepartmentController extends Controller
     */
    public function create()
    {
-    $admin=Admin::find(1);
+    $admin=Admin::getDepartment(1);
 
     return view ('departments.create')->with('admin',$admin);
 

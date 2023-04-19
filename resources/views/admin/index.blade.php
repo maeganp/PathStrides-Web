@@ -45,7 +45,7 @@
                                         <td>{{ $item->user_points }}</td>
                                         <td>{{ $item->user_email }}</td>
                                         <td>{{ $item->contactnumber }}</td>
-                                        <td>{{ $item->user_department }}     
+                                        <td>{{ $item->dep_id }}     
                                         <td>{{ $item->role }}</td>
                                         <td>{{ $item->status }}</td>
                                         

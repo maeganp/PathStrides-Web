@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('contactnumber');
             $table->string('user_username',45);
             $table->string('user_password',255);
-            $table->string('user_department',100);
             $table->integer('user_points');
             $table->string('role');
             $table->string('status');

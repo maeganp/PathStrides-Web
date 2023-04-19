@@ -27,9 +27,12 @@ class Admin extends Model
         //     return self::where('admin_coll',$adminID)->get()->toArray();
         // }
 
-        public function getDepartment(){
-            return $this->hasMany(Department::class, 'dep_id', 'admin_id');
-        }
+        // public function getDepartment(){
+        //     return $this->hasMany(Department::class, 'dep_id', 'admin_id');
+        // }
 
-       
+        public static function getAdmin($adminID){
+            return self::where('admin_coll',$adminID)->get()->toArray();
+        }
+    
 }

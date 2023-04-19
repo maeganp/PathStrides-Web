@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('notification', function (Blueprint $table) {
             $table->id('notif_id')->autoIncrement();
+            $table->unsignedBigInteger('user_id');
             $table->string('notif_text',255);
             $table->string('notif_type',255);
             $table->timestamps();
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
 

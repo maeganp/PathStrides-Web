@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('anns_id')->autoIncrement();
             $table->string('anns_title',45);
             $table->string('anns_desc',100);
-            $table->string('anns_file_url',255);
-            $table->unsignedBigInteger('admin_id');
+            $table->string('file',255)->nullable();
+            $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('admin_id')->on('admin');
             $table->timestamps();
             

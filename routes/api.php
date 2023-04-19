@@ -35,3 +35,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/show/{id}', 'App\Http\Controllers\ImageController@show');
 Route::post('/upload-image', 'App\Http\Controllers\ImageController@uploadImage');
+Route::post('/upload-file', 'App\Http\Controllers\DepartmentController@uploadFile');

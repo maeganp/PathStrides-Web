@@ -6,9 +6,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
-                                        <th>Location</th>
-                                        <th>Coordinates</th>
-                                        <th>Manager</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -17,10 +14,6 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->anns_title }} </td>
-                                        <td>{{ $item->location }} </td>
-                                        <td>{{ $item->anns_lat }} , {{ $item->anns_long }} </td>
-                                        <td>{{ $item->man_id }}</td>
-                            
                                         <td>
                                             <a href="{{ url('/announcement/' . $item->anns_id) }}" title="View announcement"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
                                             <a href="{{ url('/announcement/' . $item->anns_id . '/edit') }}" title="Edit announcement"><button class="btn btn-primary btn-sm"  id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>

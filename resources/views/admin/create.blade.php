@@ -24,8 +24,8 @@
         <input type="text" name="user_points" id="user_points" class="form-control"></br>
        
        
-        <label for="user_department">Department :</label></br>
-        <select name="user_department" id="user_department" name="user_department"></br>
+        <label for="dep_id">Department :</label></br>
+        <select name="dep_id" id="dep_id" name="dep_id"></br>
         @php
                     $count = 1;
                 @endphp
@@ -56,10 +56,8 @@
         <option value="Terminated">Terminated</option></br>
         </select></br>
 
-        <label for="emp_coll">Employee Coll :</label></br>
-        <select name="emp_coll" id="emp_coll" name="emp_coll"></br>
-        <option value="1">1</option></br>
-        </select></br>
+        
+       
         
        
         <input type="submit" value="Save" class="btn btn-success"></br>

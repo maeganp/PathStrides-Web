@@ -25,7 +25,7 @@
         @php
                     $count = 1;
                 @endphp
-                @foreach($admin->getAdmin() as $item)
+                @foreach($admin as $item)
                     @if(($count == 1) and (old('admin') <> $item['admin_lname']))
                         <option value="{{ $item['admin_lname'] }}" selected>{{ $item['admin_lname'] }}</option>  
                     @elseif(old('dep_id') === $item['dep_id'])

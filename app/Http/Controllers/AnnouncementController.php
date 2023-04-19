@@ -35,8 +35,24 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Announcement::create($input);
+        $validatedData = $request->validate([
+            'anns_title' => 'required',
+            'anns_desc' => 'required',
+            'file' => 'nullable|file|max:10240',
+        ]);
+    
+        $announcement = new Announcement();
+        $announcement->anns_title = $validatedData['anns_title'];
+        $announcement->anns_desc = $validatedData['anns_desc'];
+    
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $filename);
+            $announcement->file = $filename;
+        }
+    
+        $announcement->save();
         return redirect('announcement')->with('flash_message', 'announcement Addedd!'); 
     }
 

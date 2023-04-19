@@ -28,6 +28,7 @@
                                         <th>Task Title</th>
                                         <th>Points</th>
                                         <th>Location</th>
+                                        <th>Coordinates</th>
                                         <th>Employee Incharge</th>
                                         <th>Actions</th>
                                     </tr>
@@ -38,6 +39,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->task_title }} </td>
                                         <td>{{ $item->points }} </td>
+                                        <td>{{ $item->address }} </td>
                                         <td>{{ $item->lat }}, {{ $item->lng }}</td>
                                         <td>{{ $item->user_id }}</td>
                             

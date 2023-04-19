@@ -9,25 +9,25 @@
                         </a>
     
       
-      <form action="{{ url('announcement') }}" method="post">
+      <form action="{{ url('announcement') }}" method="POST" enctype="multipart/form-data" name="formName">
         {!! csrf_field() !!}
-        <label>Announcement Title:</label></br>
-        <input type="text" name="anns_title" id="anns_title" class="form-control"></br>
-        <label>Announcement Description:</label></br>
-        <input type="text" name="anns_desc" id="anns_desc" class="form-control"></br>
-        <label>Location:</label></br>
-        <input type="text" name="location" id="location" class="form-control"></br>
-        <label>Latitude:</label></br>
-        <input type="text" name="anns_lat" id="anns_lat" class="form-control"></br>
-        <label>Longtitude:</label></br>
-        <input type="text" name="anns_long" id="anns_long" class="form-control"></br>
-       
-       
-        
-        
-       
-        <input type="submit" value="Save" class="btn btn-success"></br>
-    </form>
+        <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="anns_title" name="anns_title">
+            </div>
+            <div class="form-group">
+                <label for="body">Body</label>
+                <textarea class="form-control" id="anns_desc" name="anns_desc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="file">File</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
     <a href="dashboard">Home</a>
                             <a href="loginAdmin">Logout</a>
   </div>
