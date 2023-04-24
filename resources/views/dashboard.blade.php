@@ -11,27 +11,26 @@
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
         <div class= "bg glass">
             <nav class="navbar navbar-expand-sm navbar-light" id="nav-top">
-                <a class="navbar-brand" href="#"><img src="{{ URL('images/pathstrides-white.png') }}" class="logo">   
-                <a class="navbar-brand" href="#" id="PathStrides-beside-logo" style="color: #FFFFFF">Pathstrides</a>
+                <a class="navbar-brand" href="{{ url('dashboard') }}"><img src="{{ URL('images/pathstrides-white.png') }}" class="logo">   
+                <a class="navbar-brand" href="{{ url('dashboard') }}" id="PathStrides-beside-logo" style="color: #FFFFFF">Pathstrides</a>
                 <ul class="nav navbar-nav navbar-right" id="top-side-nav">
                     <li>
-                        <a href="{{ url('dashboard') }}">
-                            <button class="btn btn-info btn-sm" id="home-button">
-                                <i class="fa fa-home" id="top-side-nav-icons-home"></i>
-                            </button>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <button class="btn btn-info btn-sm" id="notif-button">
-                                <i class="fas fa-bell" id="top-side-nav-icons-notif"></i>
-                               
-                            </button>
-                        </a>
+                        <div class="dropdown">
+                            <a href="#" role="button" id="notif-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell" id="top-side-nav-icons-notif"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notif-button">
+                                <a class="dropdown-item" href="#">Maegan has created an announcement</a>
+                                <a class="dropdown-item" href="#">Pete has created a task</a>
+                                <a class="dropdown-item" href="#">Zeki commented on a task</a>
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <a href="{{ url('logout') }}">
@@ -133,29 +132,13 @@
                              </div>
                         </div>
                     </div>
-                    <div class="contents-list">
+                </div>
+                <div class="contents-list">
                 <div class="col">
-                    <h3 class="ann-tasks">Analytics</h3>
+                    <h3 class="ann-tasks">Tasks</h3>
                     <div class="container-tasks">
                         <p>helloworld</p>    
                     </div>
-                </div>
-                </div>
-                </div>
-                <div class="contents-list">
-                <div class="col">
-                    <h3 class="graph-title">Task</h3>
-                    <div class="container-graph">
-                        <p>helloworld</p>    
-                    </div>
-                </div>
-                <div class="contents-list">
-                <div class="col">
-                    <h3 class="graph-title">Analytics</h3>
-                    <div class="container-graph">
-                        <p>helloworld</p>    
-                    </div>
-                </div>
                 </div>
                 </div>
             </div>          
@@ -201,6 +184,11 @@
     width:
 }
 
+.dropdown{
+    padding: 0;
+    margin-top: 0.2em;
+}
+
     body{
         background-image: url("images/bg7.jpg");
         background-size: cover;
@@ -232,6 +220,7 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255,255,0.1);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        z-index: -1;
     }
 
     /* .glass{
@@ -253,6 +242,7 @@
         margin: 0;
         padding:0;
         position: sticky;
+        z-index: 100;
     }
 
     .navbar-brand{
@@ -280,12 +270,6 @@
         right: 2em;
     }
 
-    #top-side-nav-icons-home{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
-    }
-
     #top-side-nav-icons-notif{
         color:#FFFFFF;
         font-size: 30px;
@@ -299,7 +283,7 @@
         margin-top: 0.5em;
     }
 
-    #home-button, #notif-button, #user-button{
+    #notif-button, #user-button{
         background-color: Transparent;
         background-repeat:no-repeat;
         border: none;
@@ -389,52 +373,16 @@
         display: inline-table;
         /* background-color: white; */
         width: 35vw;
-        max-height: 35vh;
-        height: 35vh;
-        margin: 7px;
-    }
+        max-height: 72.5vh;
+        height: 72.5vh;
+        margin: none;
+        z-index: 0;
 
-    .container-announcements, .container-tasks{
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 5px;
-        border: 1px solid rgba(255, 255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-        padding: 1em;
-        display: inline-table;
-        /* background-color: white; */
-        width: 35vw;
-        max-height: 35vh;
-        height: 35vh;
-        margin: 7px;
-    }
-
-    .container-announcements, .container-graph{
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 5px;
-        border: 1px solid rgba(255, 255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-        padding: 1em;
-        display: inline-table;
-        /* background-color: white; */
-        width: 35vw;
-        max-height: 35vh;
-        height: 35vh;
-        margin: 7px;
     }
 
     .ann-tasks{
         font-weight: bold;
         font-size: 14px;
-        margin: 7px;
-    }
-    .graph-title{
-        font-weight: bold;
-        font-size: 14px;
-        margin: 7px;
     }
 
     /* .container-ann, .container-tas{
