@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id('dep_id')->autoIncrement();
-            $table->unsignedBigInteger('admin_id');
             $table->integer('dep_coll')->default('1');;
             $table->string('dep_name',45);
             $table->timestamps();
-            $table->string('created_by');
+          
 
-            $table->foreign('admin_id')->references('admin_id')->on('admin');
+           
         });
     }
 

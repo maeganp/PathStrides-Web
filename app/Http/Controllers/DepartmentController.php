@@ -19,6 +19,11 @@ class DepartmentController extends Controller
        return view ('departments.index')->with('departments', $departments);
    }
 
+   public function getAll(){
+     $departments = Department::all();
+     return $departments;
+   }
+
    /**
     * Show the form for creating a new resource.
     *
@@ -26,9 +31,7 @@ class DepartmentController extends Controller
     */
    public function create()
    {
-    $admin=Admin::getDepartment(1);
-
-    return view ('departments.create')->with('admin',$admin);
+    
 
    }
 
@@ -42,7 +45,7 @@ class DepartmentController extends Controller
    {
        $input = $request->all();
        Department::create($input);
-       return redirect('department')->with('flash_message', 'Department Addedd!'); 
+      
    }
 
    /**

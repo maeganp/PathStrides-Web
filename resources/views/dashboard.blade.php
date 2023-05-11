@@ -437,6 +437,13 @@
         margin: 7px;
     }
 
+    .modal-backdrop {
+    /* bug fix - no overlay */    
+    display: none;    
+}
+
+    
+
     /* .container-ann, .container-tas{
         background-color: white;
         border-radius: 5px;

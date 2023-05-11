@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <a href="{{ url('/department/create') }}" class="add" title="Add New department">
+                    <a onclick="$('#createDepartmentModal').modal('show')" class="add" title="Add New department">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
                 </div>
@@ -105,5 +105,66 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="createDepartmentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createDepartmentModalLabel">Create Department</h5>
+        <button type="button" class="close" onclick="$('#createDepartmentModal').modal('hide')"  data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{csrf_field()}}
+        <form id="createDepartmentForm">
+            <div class="form-group">
+                <label for="dep_name">Department Name</label>
+                <input type="text" class="form-control" id="dep_name" name="dep_name" required>
+            </div>
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#createDepartmentModal').modal('hide')">Close</button>
+        <button type="button" class="btn btn-primary" onclick="createDepartment()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    
+    function createDepartment() {
+        // Get the form data
+        let formData = new FormData(document.getElementById('createDepartmentForm'));
+
+        // Send the form data to the server using Axios
+        axios.post('/department', formData)
+            .then(response => {
+                // Handle the successful response
+                console.log(response.data);
+                alert('Department created successfully!');
+                $('#createDepartmentModal').modal('hide');
+            })
+            .catch(error => {
+                // Handle the error response
+                console.log(error);
+                alert('There was an error creating the department!');
+            });
+    }
+
+    function getDepartment(){
+        axios.get('/resource')
+    .then(response => {
+      this.resources = response.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    }
+</script>
         
 @endsection

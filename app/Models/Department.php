@@ -30,13 +30,13 @@ class Department extends Model
     }
 
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($department) {
-            $department->created_by = auth()->id();
-        });
-    }
+    //     static::creating(function ($department) {
+    //         $department->created_by = auth()->id();
+    //     });
+    // }
     
 }
