@@ -1,6 +1,4 @@
-
-
- @extends('layouts.employeelayout')
+@extends('layouts.employeelayout')
 @section('content')
 <div class="row" id="employee-container">
     <div class="col" id="employee-container">
@@ -26,15 +24,19 @@
                             <tr>
                                 <th>Item ID</th>
                                 <th>Item Name</th>
-                                <th>Price</th> 
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>User</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($product as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->points_name }}</td>
+                                    <td>{{ $item->item_name }}</td>
                                     <td>{{ $item->points }}</td>
+                                    <td>Unclaimed</td>
+                                    <td>Nicki Minaj</td>
                                 </tr>
                              @endforeach
                         </tbody>
@@ -46,5 +48,3 @@
 </div>
         
 @endsection
-
-<!-- rawr -->

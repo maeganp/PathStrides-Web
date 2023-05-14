@@ -36,9 +36,7 @@ class RedeemShopController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        $fileName = time().$request->file('photo')->getClientOriginalName();
-        $path = $request->file('photo')->storeAs('images', $fileName, 'public');
-        $requestData["photo"] = '/storage/'.$path;
+        
         Shop::create($requestData);
         return redirect('pointshop')->with('flash_message', 'item Added!'); 
     }
