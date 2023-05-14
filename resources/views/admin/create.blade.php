@@ -30,12 +30,12 @@
                     $count = 1;
                 @endphp
                 @foreach($department as $item)
-                    @if(($count == 1) and (old('department') <> $item['dep_name']))
-                        <option value="{{ $item['dep_name'] }}" selected>{{ $item['dep_name'] }}</option>  
+                    @if(($count == 1) and (old('department') <> $item['dep_id']))
+                        <option value="{{ $item['dep_id'] }}" selected>{{ $item['dep_name'] }}</option>  
                     @elseif(old('dep_id') === $item['dep_id'])
-                        <option value="{{ $item['dep_name'] }}" selected>{{ $item['dep_name'] }}</option>     
+                        <option value="{{ $item['dep_id'] }}" selected>{{ $item['dep_name'] }}</option>     
                     @else
-                        <option value="{{ $item['dep_name'] }}">{{ $item['dep_name']}}</option>
+                        <option value="{{ $item['dep_id'] }}">{{ $item['dep_name']}}</option>
                     @endif
                     @php
                        $count++;
@@ -55,6 +55,9 @@
         <option value="Present">Present</option></br>
         <option value="Terminated">Terminated</option></br>
         </select></br>
+
+
+        <input type="text" name="admin_id" id="admin_id" class="form-control" value="{{ $admin_id}}"></br>
 
         
        

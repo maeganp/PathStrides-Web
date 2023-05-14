@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Manager;
-use App\Http\Controllers\Session;
+use Session;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Employee;
 use App\Controllers\AuthController;
+
 
 class TaskController extends Controller
 {
@@ -20,9 +21,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = task::all();
-        return view ('tasks.index')->with('tasks', $tasks);
+        $tasks = Task::all();
+        $employee=User::getemployee(1);
+        if(Session::has('loginId')){
+            $data = User::where('user_id','=',Session::get('loginId'))->first();
+           }
+
+           $admin_login=Session::get('admin');
+        return view ('tasks.index')->with('tasks', $tasks)->with('data',$data)->with('employee',$employee)->with('admin_login',$admin_login);
     }
+
+    public function getAll(){
+        $task = Task::all();
+        return $task;
+      }
 
     /**
      * Show the form for creating a new resource.

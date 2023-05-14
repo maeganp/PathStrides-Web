@@ -19,7 +19,7 @@
         <input type="text" name="points" id="points" class="form-control"></br>
         <label>Address:</label></br>
         <input type="text" name="address" id="address" class="form-control"></br>
-        <div id="map" style="height:400px; width: 800px;" class="my-3"></div>
+        <div id="map" style="height:400px; width: 350px;" class="my-3"></div>
 
         <div class="col-5">
                         <input type="text" class="form-control" placeholder="lat" name="lat" id="lat">

@@ -30,7 +30,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    protected $fillable  = ['user_fname','user_mname','user_lname','user_email','contactnumber','user_username','user_password','user_department','role','status','emp_coll', 'user_points']; 
+    protected $fillable  = ['user_fname','user_mname','user_lname','user_email','contactnumber','user_username','user_password','dep_id','role','status','emp_coll', 'user_points','admin_id']; 
 
 
     /**

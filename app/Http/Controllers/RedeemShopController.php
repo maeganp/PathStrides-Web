@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use Session;
+use App\Models\User;
 class RedeemShopController extends Controller
 {
     /**
@@ -14,8 +16,18 @@ class RedeemShopController extends Controller
     public function index()
     {
         $product = Shop::all();
-        return view ('pointshop.index')->with('product', $product);
+        if(Session::has('loginId')){
+            $data = User::where('user_id','=',Session::get('loginId'))->first();
+           }
+           $admin_login=Session::get('admin');
+        return view ('pointshop.index')->with('product', $product)->with('data',$data)->with('admin_login',$admin_login);
+
     }
+
+    public function getAll(){
+        $item = Shop::all();
+        return $item;
+      }
 
     /**
      * Show the form for creating a new resource.
@@ -36,9 +48,6 @@ class RedeemShopController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        $fileName = time().$request->file('photo')->getClientOriginalName();
-        $path = $request->file('photo')->storeAs('images', $fileName, 'public');
-        $requestData["photo"] = '/storage/'.$path;
         Shop::create($requestData);
         return redirect('pointshop')->with('flash_message', 'item Added!'); 
     }

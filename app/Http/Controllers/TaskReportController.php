@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TaskReport;
+use Session;
 class TaskReportController extends Controller
 {
     public function index()
     {
         $taskreport = TaskReport::all();
-        return view ('taskreport.index')->with('taskreport', $taskreport);
+        $admin_login=Session::get('admin');
+        return view ('taskreport.index')->with('taskreport', $taskreport)->with('admin_login',$admin_login);
     }
  
     /**
@@ -19,8 +21,7 @@ class TaskReportController extends Controller
      */
     public function create()
     {
-     $department=Department::getDepartment(1);
-     return view ('taskreport.create')->with('department', $department);
+     
  
     }
  

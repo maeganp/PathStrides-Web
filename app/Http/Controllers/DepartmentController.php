@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Admin;
+use Session;
+use App\Models\User;
+
 
 class DepartmentController extends Controller
 {
@@ -16,7 +19,12 @@ class DepartmentController extends Controller
    public function index()
    {
        $departments = Department::all();
-       return view ('departments.index')->with('departments', $departments);
+       if(Session::has('loginId')){
+        $data = User::where('user_id','=',Session::get('loginId'))->first();
+       }
+       $admin_login=Session::get('admin');
+
+       return view ('departments.index')->with('departments', $departments)->with('data',$data)->with('admin_login',$admin_login);
    }
 
    public function getAll(){
@@ -69,7 +77,7 @@ class DepartmentController extends Controller
    public function edit($id)
    {
        $departments = Department::find($id);
-       return view('departments.edit')->with('departments');
+       return view('departments.edit')->with('departments',$departments);
    }
 
    /**
@@ -81,10 +89,12 @@ class DepartmentController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $departments = Department::find($id);
-       $input = $request->all();
-       $departments->update($input);
-       return redirect('departments')->with('flash_message', 'employee Updated!');
+       $departments = Department::find($request->dep_id);
+       $departments->dep_name=$request->dep_name;
+    //    $input = $request->all();
+    //    $departments->update($input);
+        $departments->save();
+    
    }
 
    /**

@@ -8,6 +8,9 @@ use App\Models\Employee;
 use App\Models\Manager;
 use App\Models\Department;
 use App\Models\Admin;
+use Session;
+
+
 class AdminController extends Controller
 {
     /**
@@ -18,9 +21,28 @@ class AdminController extends Controller
    public function index()
    {
        $employee = User::all();
-       return view ('admin.index')->with('employee', $employee);
-       User::all()->notify(new AddedTask($task));
+       if(Session::has('loginId')){
+        $data = User::where('user_id','=',Session::get('loginId'))->first();
+       }
+
+      
+
+       $department=Department::getDepartment(1);
+       
+       $admin_id=Session::get('loginId');
+       $admin_login=Session::get('admin');
+       
+       
+
+       return view ('admin.index')->with('employee', $employee)->with('data',$data)->with('department',$department)->with('admin_id',$admin_id)->with('admin_login',$admin_login);
+       
+     
    }
+
+   public function getAll(){
+    $user = User::all();
+    return $user;
+  }
 
    /**
     * Show the form for creating a new resource.
@@ -29,8 +51,11 @@ class AdminController extends Controller
     */
    public function create()
    {
+   
     $department=Department::getDepartment(1);
-    return view ('admin.create')->with('department', $department);
+    $admin_id=Session::get('loginId');
+    return view ('admin.create')->with('department', $department)->with('admin_id',$admin_id);
+  
 
    }
 
@@ -44,7 +69,7 @@ class AdminController extends Controller
    {
        $input = $request->all();
        User::create($input);
-       return redirect('admin')->with('flash_message', 'employee Addedd!'); 
+     
     
    }
 

@@ -33,7 +33,7 @@ return new class extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
 
-            $table->foreign('admin_id')->references('admin_id')->on('admin');
+           
             $table->foreign('dep_id')->references('dep_id')->on('departments');
         });
     }

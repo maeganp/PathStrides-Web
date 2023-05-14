@@ -45,7 +45,19 @@ class AuthController extends Controller
 
     public function dashboard(){
         $announcements = Announcement::all();
-        return view ('dashboard')->with('announcements', $announcements);
+
+        if(Session::has('loginId')){
+            $data = User::where('user_id','=',Session::get('loginId'))->first();
+           
+        }
+
+
+
+          $admin_login=Session::get('admin');
+     
+      
+        return view ('dashboard')->with('announcements', $announcements)->with('data',$data)->with('admin_login',$admin_login);
+
     }
     public function registerUser(Request $request){
         $request->validate([
@@ -68,6 +80,8 @@ class AuthController extends Controller
             // Admin::create($res);
             // return redirect('admin')->with('flash_message', 'Admin Addedd!'); 
             $request->session()->put('loginId',$admin->admin_id);
+            $request->session()->put('admin',$admin->admin_id);
+           
             return redirect('dashboard');
         }else{
             return back()->with('fail','Try Again.');
@@ -105,35 +119,32 @@ class AuthController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
     }
     public function updateUser(Request $request){
-      // Validate the form data
-      $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|min:8',
-        'confirm_password' => 'required|same:new_password',
-    ]);
-
-    // Get the authenticated user
-    $user = User::where('user_password', $request->current_password)->first();
-    // Verify the user's current password
-        if($user==null){
-            return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
-        }
-        else if (Hash::check($request->input('current_password'), $user->user_password)) {
-            $user->user_password = Hash::make($request->input('new_password'));
-            $user->save();
-        }
-        else{
-            return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
-        }
-
-    // Update the user's password
-    
-
-    // Redirect the user to the profile page with a success message
-    return redirect('dashboard')->with('success', 'Your password has been updated.');
-    }
+        // Validate the form data
+        $request->validate([
+          'current_password' => 'required',
+          'new_password' => 'required|min:8',
+          'confirm_password' => 'required|same:new_password',
+      ]);
+  
+      // Get the authenticated user
+      $user = User::where('user_password', $request->current_password)->first();
+      // Verify the user's current password
+          if (!Hash::check($request->input('current_password'), $user->user_password)) {
+              $user->user_password = Hash::make($request->input('new_password'));
+              $user->save();
+          }
+          else{
+              return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
+          }
+  
+      // Update the user's password
+  
+  
+      // Redirect the user to the profile page with a success message
+      return redirect('dashboard')->with('success', 'Your password has been updated.');
+      }
     public function loginWeb(Request $request){
-        
+
         $request->validate([
             'email'=>'required',
             'password'=>'required|min:6|max:12',
@@ -141,8 +152,9 @@ class AuthController extends Controller
         $admin = Admin::where('admin_email','=',$request->email)->first();
         if($admin){
             if(hash::check($request->password,$admin->admin_password)){
-   
+
                 $request->session()->put('loginId',$admin->admin_id);
+                $request->session()->put('admin',$admin->admin_id);
                 return redirect('dashboard');
                 // echo "Hello world!<br>";
             }
@@ -155,18 +167,18 @@ class AuthController extends Controller
             if($user->role == "Manager"){
                 if($user->user_password==$request->password){
 
-                    
+
                     $request->session()->put('loginId',$user->user_id);
                     return redirect('updatepass');
-                        
-                    
+
+
                 // echo "Hello world!<br>";
                 }
                 else if ($user && Hash::check($request->password, $user->user_password)){
                     $request->session()->put('loginId',$user->user_id);
                     return redirect('dashboard');
-                            
-                            
+
+
                 }
                 else{
                     return back()->with('fail','Password Incorrect.');
@@ -176,11 +188,11 @@ class AuthController extends Controller
                 return back()->with('fail','You can only login this credentials on our Mobile App.');
             }
         }
-        
+
         else{
             return back()->with('fail','Email not Registered.');
         }
-   
+
     }
 
 
@@ -347,6 +359,9 @@ public function loginEmployee(Request $req){
     public function logout(){
         if(Session::has('loginId')){
             Session::pull('loginId');
+        }
+        if(Session::has('admin')){
+            unset($_SESSION['admin']);
         }
         return redirect('/');
     }

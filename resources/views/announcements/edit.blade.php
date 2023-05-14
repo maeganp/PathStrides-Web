@@ -7,8 +7,7 @@
       <form action="{{ url('announcement/' .$announcements->ann_id) }}" method="post">
         {!! csrf_field() !!}
         @method("PATCH")
-        <label>Announcement ID</label></br>
-        <input type="text" name="ann_id" id="ann_id" value="{{$announcements->ann_id}}" id="ann_id" /></br>
+        
         <label>Announcement Title:</label></br>
         <input type="text" name="ann_title" id="ann_title" value="{{$announcements->ann_title}}" class="form-control"></br>
         <label>Announcement Description:</label></br>

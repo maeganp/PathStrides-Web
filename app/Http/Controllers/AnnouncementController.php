@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Announcement;
+use App\Models\Admin;
+use Session;
+use App\Models\User;
 class AnnouncementController extends Controller
 {
      /**
@@ -14,8 +17,19 @@ class AnnouncementController extends Controller
     public function index()
     {
         $announcements = Announcement::all();
-        return view ('announcements.index')->with('announcements', $announcements);
+
+        if(Session::has('loginId')){
+            $data = User::where('user_id','=',Session::get('loginId'))->first();
+           }
+
+           $admin_login=Session::get('admin');
+        return view ('announcements.index')->with('announcements', $announcements)->with('data',$data)->with('admin_login',$admin_login);
     }
+
+    public function getAll(){
+        $announcement = Announcement::all();
+        return $announcement;
+      }
 
     /**
      * Show the form for creating a new resource.
@@ -64,8 +78,8 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        $announcement = Announcement::find($id);
-        return view('announcements.show')->with('announcements', $announcement);
+        $announcements = Announcement::find($id);
+        return view('announcements.show')->with('announcements', $announcements);
     }
 
     /**

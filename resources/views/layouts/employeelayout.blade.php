@@ -59,6 +59,8 @@
                                             </button>
                                         </a>
                                     </li>
+                                    @if($admin_login==null)
+                                    @else
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('department') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
@@ -67,11 +69,20 @@
                                             </button>
                                         </a>
                                     </li>
+                                    @endif
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('pointshop') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
                                                 <i class='fas'>&#xf07a;</i>
                                                 Points Shop
+                                            </button>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('taskreport') }}" id="a-nav-side">
+                                            <button class="btn btn-info btn-sm" id="side-nav-btn">
+                                            <i class='fas'>&#xf0ae;</i>
+                                                Task Report
                                             </button>
                                         </a>
                                     </li>
@@ -452,7 +463,11 @@
 
     .modal-backdrop {
     /* bug fix - no overlay */    
-    display: none;    
+    display: none; 
+
+  
+
+
 }
     
 </style>

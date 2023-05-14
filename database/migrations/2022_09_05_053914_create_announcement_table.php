@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('anns_desc',100);
             $table->string('file',255)->nullable();
             $table->unsignedBigInteger('admin_id')->nullable();
-            $table->foreign('admin_id')->references('admin_id')->on('admin');
             $table->timestamps();
             
         });
