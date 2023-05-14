@@ -242,7 +242,7 @@ public function loginEmployee(Request $req){
       // THEN DASHBOARD PAGE, RETURN 200. ELSE IF REQ PASS EQUAL TO NOT HASHED PASS THEN UPDATE PASS, RETURN 201
       if($user){
         
-        if($user->role != '2'){
+        if($user->role != 'Employee'){
             
             $response = ['message' => 'Your account is restricted in the Mobile App. You only have desktop access of the app.'];
                   return response()->json($response, 400);
@@ -292,12 +292,13 @@ public function loginEmployee(Request $req){
       }
    
   }
+
   public function updateEmployeePass(Request $req)
   {
       //valdiate
       $rules = [
           'oldPass' => 'required|string',
-          'newPass' => 'required|string',
+          'newPass' => 'required|string|min:6|max:12',
           'confirmPass' => 'required|string|same:newPass'
       ];
 
@@ -309,7 +310,7 @@ public function loginEmployee(Request $req){
         ],400);
       }
       // $tempUser = auth()->user();
-      
+
       //create new user in users table
       $user = User::where('user_password','=',$req->oldPass)->first();
        //$user = auth()->user();
@@ -319,10 +320,11 @@ public function loginEmployee(Request $req){
       if($user){
           if ($req->oldPass==$user->user_password) {
               if($req->newPass == $req->confirmPass){
-              
+
                   $req->confirmPass=Hash::make($req->confirmPass);
                   //$user = User::where('user_password', $req->oldPass)->update(['user_password'=>$req->confirmPass]);
-                  
+                  //$user->user_password = Hash::make($request->input('confirmPass'));
+                  $user->save();
                   $response = ['users'=>$user,'token'=>$req->session()->token(), 'status'=>true,
                   'message' => 'Success'];
 
