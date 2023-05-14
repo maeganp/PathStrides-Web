@@ -25,8 +25,6 @@
                                 <th>Item ID</th>
                                 <th>Item Name</th>
                                 <th>Price</th>
-                                <th>Status</th>
-                                <th>User</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,8 +33,6 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->item_name }}</td>
                                     <td>{{ $item->points }}</td>
-                                    <td>Unclaimed</td>
-                                    <td>Nicki Minaj</td>
                                 </tr>
                              @endforeach
                         </tbody>
