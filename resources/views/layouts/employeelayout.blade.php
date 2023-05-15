@@ -22,7 +22,7 @@
             <a class="navbar-brand" href="#" id="PathStrides-beside-logo" style="color: #FFFFFF">Pathstrides</a>
             <ul class="nav navbar-nav navbar-right" id="top-side-nav">
             <li><a href="{{ url('dashboard') }}"><button class="btn btn-info btn-sm" id="home-button"><i class="fa fa-home" id="top-side-nav-icons-home"></i></button></a></li>
-                <li><a href="#"><button class="btn btn-info btn-sm" id="notif-button"><i class="fas fa-bell" id="top-side-nav-icons-notif"></i></button></a></li>
+               
                 <li><a href="{{ url('logout') }}"><button class="btn btn-info btn-sm" id="user-button"><i class="fa fa-user-circle" id="top-side-nav-icons-user"></i></button></a></li>
             </ul>
         </nav>
@@ -59,8 +59,6 @@
                                             </button>
                                         </a>
                                     </li>
-                                    @if($admin_login==null)
-                                    @else
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('department') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
@@ -69,7 +67,6 @@
                                             </button>
                                         </a>
                                     </li>
-                                    @endif
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('pointshop') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
@@ -78,38 +75,10 @@
                                             </button>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('taskreport') }}" id="a-nav-side">
-                                            <button class="btn btn-info btn-sm" id="side-nav-btn">
-                                            <i class='fas'>&#xf0ae;</i>
-                                                Task Report
-                                            </button>
-                                        </a>
-                                    </li>
                                 </ul>
                             </nav>
             
-                            <nav class="navbar" id="nav-side-inner">
-                                <ul class="navbar-nav">
-                                    <hr>
-                                    <li class="nav-item">
-                                        
-                                        <a class="nav-link disabled" href="#" id="top-employees-title">
-                                            <i class='fas'>&#xf091;</i>
-                                             Top Employees
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees"><i class='fas'>&#xf005;</i> Jessica Wilson</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees"><i class='fas'>&#xf005;</i> Ricardo Milos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees"><i class='fas'>&#xf005;</i> Adonis Gibar</a>
-                                    </li>
-                                </ul>
-                        </nav>
+                           
 </div>
             </div>
                     <div class="col">
@@ -463,11 +432,7 @@
 
     .modal-backdrop {
     /* bug fix - no overlay */    
-    display: none; 
-
-  
-
-
+    display: none;    
 }
     
 </style>

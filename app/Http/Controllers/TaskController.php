@@ -82,11 +82,11 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        
+            
         $employee=User::getemployee(1);
         $task = Task::find($id);
         
-        return view('tasks.edit')->with('employee',$employee)->with('task');
+        return view('tasks.edit')->with('employee',$employee)->with('task',$task);
     }
 
     /**
@@ -117,19 +117,19 @@ class TaskController extends Controller
     }
 
     public function getemployeeTask(){
-        if($auth_id == $emp_id){
+        //if($auth_id == $emp_id){
             $list = new Task();
             $list = $list->getemployeeTask();
             return response()->json($list);
             // }
-         }
+         //}
     }
 
     public function approveTask($id)
     {
         $task = Task::where('task_id', $id)->get()->first();
             $task->update([
-                'status' => 'approved',
+                'status' => 'Completed',
 
             ]);
 

@@ -14,13 +14,14 @@
                                 <h2 class="titles">Employees</h2>
                             </div>
                         </div>
-                        @if($data->role=='Manager')
-                        @else
+                        @if($admin_login!=null)
                         <div class="col">
                         <a onclick="$('#createUserModal').modal('show')" class="add" title="Add New User">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
                         </div>
+                        @else
+                       
                         @endif
                     </div>
                     <div class="card-body">

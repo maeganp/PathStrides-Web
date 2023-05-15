@@ -25,14 +25,14 @@
                             </button>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#">
                             <button class="btn btn-info btn-sm" id="notif-button">
                                 <i class="fas fa-bell" id="top-side-nav-icons-notif"></i>
                                
                             </button>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ url('logout') }}">
                             <button class="btn btn-info btn-sm" id="user-button">
@@ -103,7 +103,7 @@
                                     </li>
                                 </ul>
                             </nav>
-                            <nav class="navbar" id="nav-side-inner">
+                            <!-- <nav class="navbar" id="nav-side-inner">
                                 <ul class="navbar-nav">
                                     <hr>
                                     <li class="nav-item">
@@ -131,7 +131,7 @@
                                         </a>
                                      </li>
                                 </ul>
-                            </nav>
+                            </nav> -->
                         </nav>
                     </div>
                 </div>

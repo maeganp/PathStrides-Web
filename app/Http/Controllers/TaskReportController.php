@@ -147,4 +147,12 @@ class TaskReportController extends Controller
        
         $imagePath =  $query->report_image_url;
     }
+    public function getTaskReport(){
+        // if($auth_id == $emp_id){
+            $list = new TaskReport();
+            $list = $list->getTaskReport();
+            return response()->json($list);
+            // }
+    // }
+}
 }
