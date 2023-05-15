@@ -85,7 +85,7 @@
                 <label for="item_code">Item Code</label>
                 <input type="text" class="form-control" id="item_code" name="item_code">
             </div>
-           
+            <input type="text" name="user_id" id="user_id" class="form-control" value="{{$admin_login}}"hidden></br>
             
         </form>
       </div>
