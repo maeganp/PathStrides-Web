@@ -54,8 +54,10 @@ class AuthController extends Controller
 
 
           $admin_login=Session::get('admin');
+
      
-      
+        
+
         return view ('dashboard')->with('announcements', $announcements)->with('data',$data)->with('admin_login',$admin_login);
 
     }
@@ -254,7 +256,7 @@ public function loginEmployee(Request $req){
       // THEN DASHBOARD PAGE, RETURN 200. ELSE IF REQ PASS EQUAL TO NOT HASHED PASS THEN UPDATE PASS, RETURN 201
       if($user){
         
-        if($user->role != '2'){
+        if($user->role != 'Employee'){
             
             $response = ['message' => 'Your account is restricted in the Mobile App. You only have desktop access of the app.'];
                   return response()->json($response, 400);
