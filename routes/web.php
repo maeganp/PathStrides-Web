@@ -39,7 +39,7 @@ Route::get('dashboard', [AuthController::class, 'dashboard']);
 
 // Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 
-Route::get('login', [AuthController::class, 'login']);
+Route::get('login', [AuthController::class, 'login'])->middleware('alreadyLoggedIn');
 // Route::get('loginEmployee', [AuthController::class, 'loginEmployee'])->name('loginEmployee');
 // Route::get('updateEmployeePass', [AuthController::class, 'updateEmployeePass'])->name('updateEmployeePass');
 // Route::post('postlogin', [AuthController::class, 'login'])->name('login');
@@ -47,8 +47,8 @@ Route::get('login', [AuthController::class, 'login']);
 // guide para sa custom auth login nako sauna
 
 // Route::get('login', [CustomAuthController::class, 'login'])->middleware('alreadyLoggedIn');
-Route::get('registration', [AuthController::class, 'registration']);
-Route::get('updatepass', [AuthController::class, 'updatepass']);
+Route::get('registration', [AuthController::class, 'registration'])->middleware('alreadyLoggedIn');
+Route::get('updatepass', [AuthController::class, 'updatepass'])->middleware('alreadyLoggedIn');
 Route::post('register-admin',[AuthController::class,'registerUser'])->name('register-admin');
 Route::post('update-user',[AuthController::class,'updateUser'])->name('update-user');
 Route::post('login-user',[AuthController::class,'loginWeb'])->name('login-user');
@@ -60,40 +60,39 @@ Route::get('/adminlogin',[CustomAuthController::class,'logout']);
 // Route::resource("/manager", ManagerController::class);
 
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/create', [AdminController::class, 'create']);
-Route::post('/admin', [AdminController::class, 'store']);
+Route::get('/admin', [AdminController::class, 'index'])->middleware('isLoggedIn');
+Route::get('/admin/create', [AdminController::class, 'create'])->middleware('isLoggedIn');
+Route::post('/admin', [AdminController::class, 'store'])->middleware('isLoggedIn');
 // Route::get('/admin/{resource}', [AdminController::class, 'show']);
-Route::get('/admin/{resource}/edit', [AdminController::class, 'edit']);
-Route::put('/admin/{resource}', [AdminController::class, 'update']);
-Route::delete('/admin/{resource}', [AdminController::class, 'destroy']);
-Route::get('/admin/getAll', [AdminController::class, 'getAll']);
+Route::resource("/admin", AdminController::class)->middleware('isLoggedIn');
+Route::delete('/admin/{resource}', [AdminController::class, 'destroy'])->middleware('isLoggedIn');
+Route::get('/admin/getAll', [AdminController::class, 'getAll'])->middleware('isLoggedIn');
 
 
 
 
-Route::resource("/taskreport", TaskReportController::class);
+Route::resource("/taskreport", TaskReportController::class)->middleware('isLoggedIn');
+
+Route::get('/task/{taskid}/approve', [TaskController::class, 'approveTask'])->name('taskapprove');
 
 
 
-Route::get('/department', [DepartmentController::class, 'index']);
-Route::get('/department/create', [DepartmentController::class, 'create']);
-Route::post('/department', [DepartmentController::class, 'store']);
+Route::get('/department', [DepartmentController::class, 'index'])->middleware('isLoggedIn');
+Route::get('/department/create', [DepartmentController::class, 'create'])->middleware('isLoggedIn');
+Route::post('/department', [DepartmentController::class, 'store'])->middleware('isLoggedIn');
 // Route::get('/department/{resource}', [DepartmentController::class, 'show']);
-Route::get('/department/{resource}/edit', [DepartmentController::class, 'edit']);
-Route::put('/department/{resource}', [DepartmentController::class, 'update']);
-Route::delete('/department/{resource}', [DepartmentController::class, 'destroy']);
-Route::get('/department/getAll', [DepartmentController::class, 'getAll']);
+Route::resource("/department", DepartmentController::class)->middleware('isLoggedIn');
+Route::delete('/department/{resource}', [DepartmentController::class, 'destroy'])->middleware('alreadyLoggedIn');
+Route::get('/department/getAll', [DepartmentController::class, 'getAll'])->middleware('alreadyLoggedIn');
 
 
 
-Route::get('/pointshop', [RedeemShopController::class, 'index']);
-Route::get('/pointshop/create', [RedeemShopController::class, 'create']);
-Route::post('/pointshop', [RedeemShopController::class, 'store']);
-Route::get('/pointshop/{resource}/edit', [RedeemShopController::class, 'edit']);
-Route::put('/pointshop/{resource}', [RedeemShopController::class, 'update']);
-Route::delete('/pointshop/{resource}', [RedeemShopController::class, 'destroy']);
-Route::get('/pointshop/getAll', [RedeemShopController::class, 'getAll']);
+Route::get('/pointshop', [RedeemShopController::class, 'index'])->middleware('alreadyLoggedIn');
+Route::get('/pointshop/create', [RedeemShopController::class, 'create'])->middleware('alreadyLoggedIn');
+Route::post('/pointshop', [RedeemShopController::class, 'store'])->middleware('alreadyLoggedIn');
+Route::resource("/pointshop", RedeemShopController::class)->middleware('isLoggedIn');
+Route::delete('/pointshop/{resource}', [RedeemShopController::class, 'destroy'])->middleware('alreadyLoggedIn');
+Route::get('/pointshop/getAll', [RedeemShopController::class, 'getAll'])->middleware('alreadyLoggedIn');
 
 
 
@@ -101,8 +100,7 @@ Route::get('/task', [TaskController::class, 'index']);
 Route::get('/task/create', [TaskController::class, 'create']);
 Route::post('/task', [TaskController::class, 'store']);
 // Route::get('/task/{resource}', [TaskController::class, 'show']);
-Route::get('/task/{resource}/edit', [TaskController::class, 'edit']);
-Route::put('/task/{resource}', [TaskController::class, 'update']);
+Route::resource("/task", TaskController::class)->middleware('isLoggedIn');
 Route::delete('/task/{resource}', [TaskController::class, 'destroy']);
 Route::get('/task/getAll', [TaskController::class, 'getAll']);
 
@@ -110,8 +108,7 @@ Route::get('/task/getAll', [TaskController::class, 'getAll']);
 Route::get('/announcement', [AnnouncementController::class, 'index']);
 Route::get('/announcement/create', [AnnouncementController::class, 'create']);
 Route::post('/announcement', [AnnouncementController::class, 'store']);
-Route::get('/announcement/{resource}/edit', [AnnouncementController::class, 'edit']);
-Route::put('/announcement/{resource}', [AnnouncementController::class, 'update']);
+Route::resource("/announcement", AnnouncementController::class)->middleware('isLoggedIn');
 Route::delete('/announcement/{resource}', [AnnouncementController::class, 'destroy']);
 Route::get('/announcement/getAll', [AnnouncementController::class, 'getAll']);
 

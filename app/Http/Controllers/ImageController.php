@@ -29,7 +29,6 @@ class ImageController extends Controller
         $report = new TaskReport;
          $report->report_image_url =($path);
          $report->report_text=$request->report_text;
-      
         $report->save();
         // // Return a response with the path to the saved image file
          return response()->json(['path' => $path]);

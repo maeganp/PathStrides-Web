@@ -109,6 +109,7 @@
       <h5 class="card-title">Announcement ID : {{ $item-> anns_id }}</h5>
         <p class="card-text">Announcment Title : {{ $item->anns_title }}</p>
         <p class="card-text">Announcment Title : {{ $item->anns_desc }}</p>
+        <img src="{{asset('storage/images/16663237389b12b246be36bb793ec730a57fa9cf0f.jpg')}}" width="100px" height="100px" alt="">
 
       
       </div>

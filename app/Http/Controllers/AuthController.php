@@ -51,11 +51,8 @@ class AuthController extends Controller
            
         }
 
-
-
           $admin_login=Session::get('admin');
      
-      
         return view ('dashboard')->with('announcements', $announcements)->with('data',$data)->with('admin_login',$admin_login);
 
     }

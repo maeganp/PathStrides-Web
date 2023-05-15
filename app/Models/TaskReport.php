@@ -13,4 +13,6 @@ class TaskReport extends Model
     public $timestamps = false;
     protected $table = 'task_report';
     protected $primaryKey = 'task_report_id';
+
+    
 }

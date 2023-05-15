@@ -90,7 +90,7 @@
                             
                                     <td>
                                         
-                                    <a onclick="$('#editDepartmentModal{{$item->dep_id}}').modal('show')" title="Edit department" id="actbtn"><button class="btn btn-primary btn-sm"  id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
+                                    <a href="{{ url('/department/' . $item->dep_id . '/edit') }}" title="Edit department" id="actbtn"><button class="btn btn-primary btn-sm"  id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
                                         <form method="POST" action="{{ url('/department' . '/' . $item->dep_id) }}" accept-charset="UTF-8" style="display:inline">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}

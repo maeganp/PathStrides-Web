@@ -84,8 +84,9 @@ class TaskController extends Controller
     {
         
         $employee=User::getemployee(1);
+        $task = Task::find($id);
         
-        return view('tasks.edit')->with('employee',$employee);
+        return view('tasks.edit')->with('employee',$employee)->with('task');
     }
 
     /**
@@ -121,6 +122,19 @@ class TaskController extends Controller
             $list = $list->getemployeeTask();
             return response()->json($list);
             // }
+         }
     }
-}
+
+    public function approveTask($id)
+    {
+        $task = Task::where('task_id', $id)->get()->first();
+            $task->update([
+                'status' => 'approved',
+
+            ]);
+
+            return response()->json($task,200);
+ 
+        
+    }
 }

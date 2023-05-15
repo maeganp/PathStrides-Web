@@ -89,11 +89,10 @@ class DepartmentController extends Controller
     */
    public function update(Request $request, $id)
    {
-       $departments = Department::find($request->dep_id);
-       $departments->dep_name=$request->dep_name;
-    //    $input = $request->all();
-    //    $departments->update($input);
-        $departments->save();
+    $departments = Department::find($id);
+    $input = $request->all();
+    $departments->update($input);
+    return redirect('department')->with('flash_message', 'employee Updated!');
     
    }
 

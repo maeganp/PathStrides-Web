@@ -1,51 +1,52 @@
-<!-- Modal -->
-<div class="modal fade" id="createDepartmentModal" tabindex="-1" aria-labelledby="createDepartmentModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border border-warning">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createDepartmentModalLabel">Create Department</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Form to create a user -->
-        <form id="createUserForm">
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
-          </div>
-          <button type="submit" class="btn btn-primary">Create</button>
-        </form>
-      </div>
-    </div>
+@extends('layouts.employeelayout')
+@section('content')
+<div class="card">
+  <div class="card-header">Departments Page</div>
+  <div class="card-body">
+
+  <a href="{{ url('/department/') }}" class="btn btn-success btn-sm" title="Back">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Back
+                        </a>
+    
+      
+      <form action="{{ url('department') }}" method="post">
+        {!! csrf_field() !!}
+      
+        <label>Department Name:</label></br>
+        <input type="text" name="admin_lname" id="admin_lname" class="form-control"></br>
+        <!-- <label for="dep_coll">Department Coll :</label></br>
+        <select name="dep_coll" id="dep_coll" name="dep_coll"></br>
+        <option value="1">1</option></br>
+        </select> -->
+
+
+        <label for="admin_id">Admin Incharge:</label></br>
+        <select name="admin_id" id="admin_id" name="admin_id"></br>
+        @php
+                    $count = 1;
+                @endphp
+                @foreach($admin->getAdmin() as $item)
+                    @if(($count == 1) and (old('admin') <> $item['admin_lname']))
+                        <option value="{{ $item['admin_lname'] }}" selected>{{ $item['admin_lname'] }}</option>  
+                    @elseif(old('dep_id') === $item['dep_id'])
+                        <option value="{{ $item['admin_lname'] }}" selected>{{ $item['admin_lname'] }}</option>     
+                    @else
+                        <option value="{{ $item['admin_lname'] }}">{{ $item['admin_lname']}}</option>
+                    @endif
+                    @php
+                       $count++;
+                    @endphp
+                @endforeach
+        </select></br>
+        </select></br>
+        
+        
+        
+       
+        <input type="submit" value="Save" class="btn btn-success"></br>
+    </form>
+    <a href="dashboard">Home</a>
+                            <a href="loginAdmin">Logout</a>
   </div>
 </div>
-
-<script>
-$(function() {
-  $('#createUserForm').on('submit', function(e) {
-    e.preventDefault();
-
-    // Submit form data via AJAX
-    $.ajax({
-      url: '/department',
-      method: 'POST',
-      data: $(this).serialize(),
-      success: function(data) {
-        // Update the page with the new user data
-        $('#departmentTable tbody').append('<tr><td>' + data.name + '</td><td>' + data.email + '</td><td>' + data.created_at + '</td></tr>');
-
-        // Close the modal
-        $('#createDepartmentModal').modal('hide');
-      }
-    });
-  });
-});
-</script>
+@stop

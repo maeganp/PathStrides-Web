@@ -40,7 +40,7 @@
                                         <td>{{ $item->report_text }}</td>
                                         
                                         <td>
-                                        <a onclick="$('#showAnnouncementModal{{$item->anns_id}}').modal('show')" title="View employee"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
+                                        <a onclick="$('#showtaskReportModal{{$item->task_report_id}}').modal('show')" title="View employee"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -73,10 +73,27 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#showtaskReportModal{{$item->task_report_id}}').modal('hide')">Close</button>
+        <button type="button" class="btn btn-primary" onclick="approve({{$item->task_id}})" data-dismiss="modal">Approve</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    function approve(id) {
+      var route = `/task/${id}/approve`;
+      console.log(route);
+      axios.get(route).then((result) => 
+      {     
+        console.log(result);
+        console.log('approved'); 
+      }).catch((err) =>
+       {     
+        console.log(err); });
+        
+    }
+
+</script>
 @endforeach
         
 @endsection

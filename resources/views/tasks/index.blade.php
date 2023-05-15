@@ -30,6 +30,7 @@
                                         <th>Location</th>
                                         <th>Coordinates</th>
                                         <th>Employee Incharge</th>
+                                        <th>Status</th> 
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,7 @@
                                         <td>{{ $item->address }} </td>
                                         <td>{{ $item->lat }}, {{ $item->lng }}</td>
                                         <td>{{ $item->user_id }}</td>
+                                        <td>{{ $item->status }}</td>
                             
                                         <td>
                                             <a href="{{ url('/task/' . $item->task_id) }}" title="View task"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
@@ -92,7 +94,6 @@
         <label for="status">Status :</label></br>
         <select name="status" id="status" name="status"></br>
         <option value="Pending">Pending</option></br>
-        <option value="Completed">Completed</option></br>
         </select></br>
        
         
