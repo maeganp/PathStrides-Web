@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('task_report', function (Blueprint $table) {
             $table->id('task_report_id')->autoIncrement();
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_name');
             $table->unsignedBigInteger('task_id');
             $table->string('report_text',100)->nullable();
             $table->string('report_image_url');
             $table->timestamps();
-            $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('task_id')->references('task_id')->on('task');
             $table->engine = 'InnoDB';
         });

@@ -20,8 +20,8 @@
         <input type="text" name="user_email" id="user_email" value="{{$employee->user_email}}" class="form-control"></br>
         <label>Contact Number</label></br>
         <input type="text" name="contactnumber" id="contactnumber" value="{{$employee->contactnumber}}" class="form-control"></br>
-        <label for="user_department">Department :</label></br>
-        <select name="user_department" id="user_department" name="user_department"></br>
+        <label for="dep_name">Department :</label></br>
+        <select name="dep_name" id="dep_name" name="dep_name"></br>
         @php
                     $count = 1;
                 @endphp
@@ -48,7 +48,7 @@
 
         <label for="status">Status :</label></br>
         <select name="status" id="status" name="status"></br>
-        <option value="Present">Present</option></br>
+        <option value="Present">Employed</option></br>
         <option value="Terminated">Terminated</option></br>
         </select></br>
         <input type="submit" value="Update" class="btn btn-success"></br>

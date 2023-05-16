@@ -86,7 +86,7 @@ class TaskController extends Controller
         $employee=User::getemployee(1);
         $task = Task::find($id);
         
-        return view('tasks.edit')->with('employee',$employee)->with('task');
+        return view('tasks.edit')->with('employee',$employee)->with('task',$task);
     }
 
     /**
@@ -129,7 +129,7 @@ class TaskController extends Controller
     {
         $task = Task::where('task_id', $id)->get()->first();
             $task->update([
-                'status' => 'approved',
+                'status' => 'Completed',
 
             ]);
 

@@ -28,7 +28,6 @@
                                         <th>Task Title</th>
                                         <th>Points</th>
                                         <th>Location</th>
-                                        <th>Coordinates</th>
                                         <th>Employee Incharge</th>
                                         <th>Status</th> 
                                         <th>Actions</th>
@@ -36,25 +35,41 @@
                                 </thead>
                                 <tbody>
                                 @foreach($tasks as $item)
+                                    @if($item->status=='Completed' )
+                                        @if($admin_login!=null)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->task_title }} </td>
                                         <td>{{ $item->points }} </td>
                                         <td>{{ $item->address }} </td>
-                                        <td>{{ $item->lat }}, {{ $item->lng }}</td>
-                                        <td>{{ $item->user_id }}</td>
+                                        <td>{{ $item->user_name }}</td>
                                         <td>{{ $item->status }}</td>
                             
                                         <td>
                                             <a href="{{ url('/task/' . $item->task_id) }}" title="View task"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                             <a href="{{ url('/task/' . $item->task_id . '/edit') }}" title="Edit task"><button class="btn btn-primary btn-sm" id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
-                                            <form method="POST" action="{{ url('/task' . '/' . $item->task_id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-sm" id="actbtn" title="Delete task" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-minus-square" aria-hidden="true" id="vieweditbtnicon"></i></button>
+                                    
                                             </form>
                                         </td>
                                     </tr>
+                                    @endif
+                                    @else
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->task_title }} </td>
+                                        <td>{{ $item->points }} </td>
+                                        <td>{{ $item->address }} </td>
+                                        <td>{{ $item->user_name }}</td>
+                                        <td>{{ $item->status }}</td>
+                            
+                                        <td>
+                                            <a href="{{ url('/task/' . $item->task_id) }}" title="View task"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+                                            <a href="{{ url('/task/' . $item->task_id . '/edit') }}" title="Edit task"><button class="btn btn-primary btn-sm" id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
+                                    
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
@@ -97,18 +112,18 @@
         </select></br>
        
         
-        <label for="user_id">Employee Incharge:</label></br>
-        <select name="user_id" id="user_id" name="user_id"></br>
+        <label for="user_name">Employee Incharge:</label></br>
+        <select name="user_name" id="user_name" name="user_name"></br>
         @php
                     $count = 1;
                 @endphp
                 @foreach($employee as $item)
-                    @if(($count == 1) and (old('user_id') <> $item['user_id']))
-                        <option value="{{ $item['user_id'] }}" selected>{{ $item['user_lname'] }}</option>  
-                    @elseif(old('user_id') === $item['user_id'])
-                        <option value="{{ $item['user_id'] }}" selected>{{ $item['user_lname'] }}</option>     
+                    @if(($count == 1) and (old('user_lname') <> $item['user_lname']))
+                        <option value="{{ $item['user_lname'] }}" selected>{{ $item['user_lname'] }}</option>  
+                    @elseif(old('user_lname') === $item['user_lname'])
+                        <option value="{{ $item['user_lname'] }}" selected>{{ $item['user_lname'] }}</option>     
                     @else
-                        <option value="{{ $item['user_id'] }}">{{ $item['user_lname']}}</option>
+                        <option value="{{ $item['user_lname'] }}">{{ $item['user_lname']}}</option>
                     @endif
                     @php
                        $count++;
@@ -126,38 +141,7 @@
 </div>
 
 
-@foreach($tasks as $item)
-<!-- Modal Edit-->
-<div class="modal fade" id="editTaskModal{{$item->dep_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-  <div class="modal-dialog" >
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
-        <button type="button" class="close" onclick="$('#editTaskModal{{$item->dep_id}}').modal('hide')"  data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{csrf_field()}}
-        <form id="editTaskForm">
 
-            <div class="form-group">
-             @method('PUT')
-                <input type="text" name="dep_id" id="dep_id" value="{{$item->dep_id}}"hidden >
-                <label for="dep_name">Task Name</label>
-                <input type="text" class="form-control" id="dep_name" name="dep_name" value="{{$item->dep_name}}" required >
-            </div>
-            
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#editTaskModal{{$item->dep_id}}').modal('hide')">Close</button>
-        <button type="button" class="btn btn-primary" onclick="createTask({{$item->dep_id}})">Edit</button>
-      </div>
-    </div>
-  </div>
-</div>
-@endforeach
 
 <script>
     

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->id('task_id')->autoIncrement();
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_name');
             $table->string('task_title',45);
             $table->string('task_desc',255);
             $table->smallInteger('points');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
           
 
-            $table->foreign('user_id')->references('user_id')->on('users');
+          
             $table->engine = 'InnoDB';
         });
     }

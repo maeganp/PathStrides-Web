@@ -32,7 +32,7 @@ class AdminController extends Controller
        $admin_id=Session::get('loginId');
        $admin_login=Session::get('admin');
 
-       
+    
        
        
 

@@ -28,13 +28,13 @@ return new class extends Migration
             $table->string('user_lat')->nullable();
             $table->string('user_long')->nullable();
             $table->unsignedBigInteger('admin_id');
-            $table->unsignedBigInteger('dep_id');
+            $table->string('dep_name');
             $table->integer('emp_coll')->default('1');
             $table->timestamps();
             $table->engine = 'InnoDB';
 
            
-            $table->foreign('dep_id')->references('dep_id')->on('departments');
+         
         });
     }
 
