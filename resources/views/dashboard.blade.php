@@ -106,6 +106,7 @@
                 </div>
                 <div class="contents-list">
                     <div class="col">
+                        <h3 class="ann-header">Announcements</h3>
                         <div class="content-list">
                         <div class="container-tasks">	
                             <div class="container-ann">    	
