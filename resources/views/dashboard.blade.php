@@ -49,6 +49,8 @@
                     <div class="container-fluid" id="container-for-sidenav">
                         <nav class="navbar" id="nav-side">
                             <nav class="navbar" id="nav-side-inner">
+                                <h3>Menu</h2>
+                                <hr>
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('announcement') }}" id="a-nav-side">
@@ -90,6 +92,14 @@
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
                                                 <i class='fas'>&#xf07a;</i>
                                                 Points Shop
+                                            </button>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('taskreport') }}" id="a-nav-side">
+                                            <button class="btn btn-info btn-sm" id="side-nav-btn">
+                                            <i class='fas'>&#xf0ae;</i>
+                                                Task Report
                                             </button>
                                         </a>
                                     </li>
@@ -145,14 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contents-list">
-                <div class="col">
-                    <h3 class="graph-title">Task</h3>
-                    <div class="container-graph">
-                        <p>helloworld</p>    
-                    </div>
-                </div>
-                </div>
+                
             </div>          
         </div>
     </body>
@@ -323,14 +326,14 @@
     }
 
     
-    /* #nav-side-inner{
-        background-color: rgba(255, 255,255,0.05);
+    #nav-side-inner{
+       bottom: 6em;
         width: 15em;
         border-radius: 10px;
         display: block;
         clear: right;
         float: left;
-    } */
+    }
 
     #a-nav-side{
         color: white;
@@ -399,9 +402,10 @@
         padding: 1em;
         display: inline-table;
         /* background-color: white; */
-        width: 35vw;
-        max-height: 35vh;
-        height: 35vh;
+        width: 75vw;
+       max-width: 75vw;
+        max-height: 70vh;
+        height: 70vh;
         margin: 7px;
     }
 
@@ -415,7 +419,7 @@
         padding: 1em;
         display: inline-table;
         /* background-color: white; */
-        width: 35vw;
+        width: 75vw;
         max-height: 35vh;
         height: 35vh;
         margin: 7px;

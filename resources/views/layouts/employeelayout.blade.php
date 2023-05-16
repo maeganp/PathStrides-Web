@@ -33,13 +33,15 @@
             <div class="col-2" id="side-nav">
                 <div class="container-fluid" id="container-for-sidenav">
                     <nav class="navbar" id="nav-side">
-                            <nav class="navbar" id="nav-side-inner">
-                            <ul class="navbar-nav">
-                            <li class="nav-item">
+                    <nav class="navbar" id="nav-side-inner">
+                                <h3 id="menu">Menu</h2>
+                                <hr>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ url('announcement') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
                                                 <i class='fas'>&#xf0a1;</i>
-                                                Announcements
+                                                    Announcements
                                             </button>
                                         </a>
                                     </li>
@@ -59,6 +61,8 @@
                                             </button>
                                         </a>
                                     </li>
+                                    @if($admin_login==null)
+                                    @else
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('department') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
@@ -67,11 +71,28 @@
                                             </button>
                                         </a>
                                     </li>
+                                    @endif
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('pointshop') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
                                                 <i class='fas'>&#xf07a;</i>
                                                 Points Shop
+                                            </button>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('taskreport') }}" id="a-nav-side">
+                                            <button class="btn btn-info btn-sm" id="side-nav-btn">
+                                            <i class='fas'>&#xf0ae;</i>
+                                                Task Report
+                                            </button>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('taskreport') }}" id="a-nav-side">
+                                            <button class="btn btn-info btn-sm" id="side-nav-btn">
+                                            <i class='fas'>&#xf0ae;</i>
+                                                Task Report
                                             </button>
                                         </a>
                                     </li>
@@ -262,14 +283,14 @@
     }
 
     
-    /* #nav-side-inner{
-        background-color: rgba(255, 255,255,0.05);
+    #nav-side-inner{
+       bottom: 6em;
         width: 15em;
         border-radius: 10px;
         display: block;
         clear: right;
         float: left;
-    } */
+    }
 
     #a-nav-side{
         color: white;
