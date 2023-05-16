@@ -20,7 +20,6 @@
         <label for="status">Status :</label></br>
         <select name="status" id="status" name="status"></br>
         <option value="Pending">Pending</option></br>
-        <option value="Completed">Completed</option></br>
         </select></br>
 
         <script>

@@ -14,5 +14,7 @@ class TaskReport extends Model
     protected $table = 'task_report';
     protected $primaryKey = 'task_report_id';
 
-    
+    public function getTaskReport(){
+        return $this->get();
+    }
 }

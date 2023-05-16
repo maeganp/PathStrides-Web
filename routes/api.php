@@ -19,16 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function(){
     
 });
+Route::post('/employeeLogout',[AuthController::class,'logoutEmployee']);
 Route::post('/auth/updateEmployeePass',[AuthController::class,'updateEmployeePass']);
 // Route::post('/auth/login',[AuthController::class,'login']);
 Route::post('/auth/loginEmployee',[AuthController::class,'loginEmployee']);
-Route::post('/taskReport',[TaskReportController::class,'uploadImage']);
+Route::get('/taskReport','App\Http\Controllers\TaskReportController@getTaskReport');
+Route::get('/announcementDisplay/{id}','App\Http\Controllers\ImageController@announcementShow');
+Route::get('/displayImage/{id}','App\Http\Controllers\ImageController@getTaskReportImage');
 //Route::post('/auth/register',[AuthController::class,'register']);
 Route::get('/employeeTask','App\Http\Controllers\TaskController@getEmployeeTask');
 Route::get('/employeeUser','App\Http\Controllers\AdminController@getUser');
 Route::get('/employeeAnnounce','App\Http\Controllers\AnnouncementController@getAnnouncement');
 Route::get('/employeePointShop','App\Http\Controllers\RedeemShopController@getRedeemShop');
-Route::get('/employeePointShop','App\Http\Controllers\RedeemShopController@getUserPoints');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

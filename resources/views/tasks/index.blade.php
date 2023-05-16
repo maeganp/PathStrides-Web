@@ -35,7 +35,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($tasks as $item)
-                                    @if($item->status=='Completed' )
+                                @if($item->status=='Completed' )
                                         @if($admin_login!=null)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -48,28 +48,13 @@
                                         <td>
                                             <a href="{{ url('/task/' . $item->task_id) }}" title="View task"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                             <a href="{{ url('/task/' . $item->task_id . '/edit') }}" title="Edit task"><button class="btn btn-primary btn-sm" id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
-                                    
+                                            <form method="POST" action="{{ url('/task' . '/' . $item->task_id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-sm" id="actbtn" title="Delete task" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-minus-square" aria-hidden="true" id="vieweditbtnicon"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-                                    @endif
-                                    @else
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->task_title }} </td>
-                                        <td>{{ $item->points }} </td>
-                                        <td>{{ $item->address }} </td>
-                                        <td>{{ $item->user_name }}</td>
-                                        <td>{{ $item->status }}</td>
-                            
-                                        <td>
-                                            <a href="{{ url('/task/' . $item->task_id) }}" title="View task"><button class="btn btn-info btn-sm" id="actbtn"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-                                            <a href="{{ url('/task/' . $item->task_id . '/edit') }}" title="Edit task"><button class="btn btn-primary btn-sm" id="actbtn"><i class="fa fa-pencil-square-o" aria-hidden="true" id="vieweditbtnicon"></i></button></a>
-                                    
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
