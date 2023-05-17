@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Pathstrides</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-    <div class= "bg glass">
-        <nav class="navbar navbar-expand-sm navbar-light" id="nav-top">
+    <head>
+        <title>Pathstrides</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <div class= "bg glass">
+            <nav class="navbar navbar-expand-sm navbar-light" id="nav-top">
+                <a class="navbar-brand" href="#"><img src="{{ URL('images/finallogo.png') }}" class="logo">   
+                <a class="navbar-brand" href="#" id="PathStrides-beside-logo" style="color: #000000">Pathstrides</a>
+                <ul class="nav navbar-nav navbar-right" id="top-side-nav">
+                    <li>
+                        <a href="{{ url('dashboard') }}">
+                            <button class="btn btn-info btn-sm" id="home-button">
+                                <a id="top-side-nav-icons-home" href="{{ url('dashboard') }}">Home</a>
+                            </button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('logout') }}">
+                            <button class="btn btn-info btn-sm" id="user-button">
+                                <a id="top-side-nav-icons-user" href="{{ url('logout') }}">Logout</a>
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <hr>
 
-            <a class="navbar-brand" href="#"><img src="{{ URL('images/pathstrides-white.png') }}" class="logo">
-                
-            <a class="navbar-brand" href="#" id="PathStrides-beside-logo" style="color: #FFFFFF">Pathstrides</a>
-            <ul class="nav navbar-nav navbar-right" id="top-side-nav">
-            <li><a href="{{ url('dashboard') }}"><button class="btn btn-info btn-sm" id="home-button"><i class="fa fa-home" id="top-side-nav-icons-home"></i></button></a></li>
-               
-                <li><a href="{{ url('logout') }}"><button class="btn btn-info btn-sm" id="user-button"><i class="fa fa-user-circle" id="top-side-nav-icons-user"></i></button></a></li>
-            </ul>
-        </nav>
-
-        <hr>
-
-        <div class="row">
-            <div class="col-2" id="side-nav">
-                <div class="container-fluid" id="container-for-sidenav">
-                    <nav class="navbar" id="nav-side">
+            <div class="row">
+                <div class="col-2" id="side-nav">
+                    <div class="container-fluid" id="container-for-sidenav">
+                        <nav class="navbar" id="nav-side">
                             <nav class="navbar" id="nav-side-inner">
-                            <ul class="navbar-nav">
-                            <li class="nav-item">
+                                
+                            <p class="logger" id="logger-name">Nicki Minaj</p>
+                                    <p class="logger" id="logger-position">Admin</p>
+                                    <hr>
+
+                                <ul class="navbar-nav">
+                                    
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ url('announcement') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
                                                 <i class='fas'>&#xf0a1;</i>
-                                                Announcements
+                                                    Announcements
                                             </button>
                                         </a>
                                     </li>
@@ -79,35 +92,30 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('reportask') }}" id="a-nav-side">
+                                        <a class="nav-link" href="{{ url('taskreport') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
-                                                <i class='fas'>&#xf0ae;</i>
-                                                Report Tasks
+                                            <i class='fas'>&#xf0ae;</i>
+                                                Task Report
                                             </button>
                                         </a>
                                     </li>
                                 </ul>
                             </nav>
-            
-                           
-</div>
-            </div>
+                        </nav>
+                    </div>
+                </div>
                     <div class="col">
-                        <!-- <h3 class="title">Employees</h3> -->
                         <div class="content-list">
                             <div class="container-ann">
-                                <div style="overflow-y: auto; overflow-x:hidden;">
+                            <div style="overflow-y: auto; overflow-x:hidden;">
                                     @yield('content')
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </div>         
         </div>
-    </div>
-</body>
+    </body>
 </html>
+
 <style>
      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
     * {
@@ -147,18 +155,26 @@
 }
 
     body{
-        background-image: url("images/bg7.jpg");
+        background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
         background-size: cover;
         -webkit-backdrop-filter: brightness(20%);
     }
 
     hr{
-        border-color: white;
-        opacity: 20%;
+        border-color: black;
+        opacity: 40%;
     }
 
     h3{
-        color: white;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .ann-header{
+        bottom: 1em;
+        margin: 0;
+        
     }
 
     .bg{
@@ -171,12 +187,9 @@
     /* glass effect */
     .glass{
         
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background-color: white;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
     }
 
     /* .glass{
@@ -225,33 +238,23 @@
         right: 2em;
     }
 
-    #top-side-nav-icons-home{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
+    #top-side-nav-icons-home, #top-side-nav-icons-user{
+        color:black;
+        font-size: 15px;
+        margin-top: 1.5em;
     }
 
-    #top-side-nav-icons-notif{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
-    }
-    
-
-    #top-side-nav-icons-user{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
-    }
-
-    #home-button, #notif-button, #user-button{
+    #home-button, #user-button{
         background-color: Transparent;
         background-repeat:no-repeat;
         border: none;
     }
-
-    #top-side-nav-icons-home:hover, #top-side-nav-icons-notif:hover, #top-side-nav-icons-user:hover{
+    
+    #top-side-nav-icons-home:hover, #top-side-nav-icons-user:hover{
         color: #FF7843;
+        font-weight: bold;
+        font-size: 17px;
+        text-decoration: none;
     }
 
     /* side nav bar */
@@ -260,31 +263,48 @@
         margin: 0;
     }
 
+    .logger{
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+
+    #logger-name{
+        font-weight: bold;
+        font-size:16px;
+
+    }
+
+    #logger-position{
+        font-size: 14px;
+        color: #797979;
+    }
+
     #nav-side{
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        /* background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
+        backdrop-filter: blur(10px); */
+        /* -webkit-backdrop-filter: blur(10px);
         border-radius: 5px;
         border: 1px solid rgba(255, 255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-        width: 12vw;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); */
+        width: 13vw;
         height: 76vh;
         padding: 0;
     }
 
     
-    /* #nav-side-inner{
-        background-color: rgba(255, 255,255,0.05);
+    #nav-side-inner{
+       bottom: 6em;
         width: 15em;
         border-radius: 10px;
         display: block;
         clear: right;
         float: left;
-    } */
+    }
 
     #a-nav-side{
-        color: white;
-        font-weight: 600;
+        color: black;
+        /* font-weight: 600; */
     }
     
 
@@ -293,37 +313,24 @@
         background-repeat:no-repeat;
         border-width: 2px;
         border-color: Transparent;
-        font-size: 12.5px;
-        font-weight: bold;
+        font-size: 13px;
         /* padding: 0; */
+        color: #000;
     }
 
     #side-nav-btn:hover{
         border-radius: 5px;
         border-width: 2px;
         border-color: white;
-        color: #FF7843;
-        /* color: white; */
-        /* font-weight: bold; */
-        background-color: rgba(255, 255, 255, 1.0);
-    }
-
-
-    #top-employees-title{
-        margin: 0;
-        padding-bottom: 0.3em;
         color: white;
         font-size: 14px;
+        /* color: white; */
         font-weight: bold;
-    }
-
-    #top-employees{
-        font-size: 13px;
-        color: white;
+        background-color: #FF7843;
     }
 
     /* containers */
-    .content-list{
+    .container-announcements, .container-tasks{
         background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
@@ -331,23 +338,75 @@
         border: 1px solid rgba(255, 255,255,0.1);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
         padding: 1em;
+        display: inline-table;
         /* background-color: white; */
-        height: 75.85vh;
         width: 75vw;
-        float: left;
+       max-width: 75vw;
+        max-height: 70vh;
+        height: 70vh;
+        margin: 7px;
     }
 
     
+    .contents-list{
+        margin-bottom: 0;
+    }
+    .container-announcements, .container-tasks{
+        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255,255,0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        padding: 1em;
+        display: inline-table;
+        /* background-color: white; */
+        width: 75vw;
+       max-width: 75vw;
+        max-height: 70vh;
+        height: 70vh;
+        margin: 7px;
+    }
 
-    /* content */
+    .container-announcements, .container-graph{
+        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255,255,0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        padding: 1em;
+        display: inline-table;
+        /* background-color: white; */
+        width: 75vw;
+        max-height: 35vh;
+        height: 35vh;
+        margin: 7px;
+    }
 
-    .titles{
+    .ann-tasks{
+        font-weight: bold;
+        font-size: 14px;
+        margin: 7px;
+    }
+    .graph-title{
+        font-weight: bold;
+        font-size: 14px;
+        margin: 7px;
+    }
+
+    .modal-backdrop {
+    /* bug fix - no overlay */    
+    display: none;    
+}
+
+.titles{
         font-weight: bold;
         font-size: 16px;
         clear: left;
-        color: white;
+        color: black;
     }
-    
+
     #employee-container{
         background-color: Transparent;
         background-repeat:no-repeat;
@@ -358,7 +417,7 @@
         border: none;
         background-color: Transparent;
         background-repeat:no-repeat;
-        color: white;
+        color: black;
     }
 
     .card-header{
@@ -373,7 +432,7 @@
     .add{
         float: right;
         font-size: 14px;
-        color: white;
+        color: black;
         padding: 7px;
         margin-right: 2em;
     }
@@ -381,10 +440,9 @@
     .add:hover{
         float: right;
         border-radius: 5px;
-        font-size: 14px;
-        color: #FF7843;
+        color: white;
         text-decoration: none;
-        background:white;
+        background:#FF7843;
         font-weight: bold;
     }
 
@@ -399,18 +457,18 @@
     } */
 
     table{
-        width: 80 vw;
-        max-width: 80vw;
+        width: 75vw;
+        max-width: 75vw;
     }
 
     th{
         font-size: 14px;
         margin: auto;
-        color: white;
+        color: Black;
     }
 
     td{
-        color: white;
+        color: black;
         font-size: 12px;
     }
 
@@ -418,7 +476,7 @@
     #actbtn{
         background-color: transparent;
         border-color: transparent;
-        color: white;
+        color: #3D4E57;
     }
 
     #actbtn:hover{
@@ -446,4 +504,10 @@
     display: none;    
 }
     
+
+    /* .container-ann, .container-tas{
+        background-color: white;
+        border-radius: 5px;
+        padding: 1em;
+    } */
 </style>

@@ -48,8 +48,8 @@
 
     .anncon{
         overflow-y: auto;
-        height: 67vh;
-        max-height: 30vh;
+        height: 65vh;
+        max-height: 65vh;
         padding: none;
     }
 
@@ -70,12 +70,17 @@
     }
 
     .ann-task-list-con{
-        background-color: white;
+        background-color: #E4EDF7;
         border-radius: 5px;
         padding: 1em;
         margin-bottom: 0.5em;
+        margin-left: auto;
+  margin-right: auto;
         color: black;
-        max-width: 29em;
+        max-width: 65em;
+        width: 65em;
+        /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); */
+        
     }
 
     .ann-task-list-con:hover{
