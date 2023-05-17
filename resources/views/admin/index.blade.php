@@ -52,7 +52,7 @@
                                             <td>{{ $item->user_points }}</td>
                                             <td>{{ $item->user_email }}</td>
                                             <td>{{ $item->contactnumber }}</td>
-                                            <td>{{ $item->dep_id }}</td>    
+                                            <td>{{ $item->dep_name }}</td>    
                                             <td>{{ $item->role }}</td>
                                             <td>{{ $item->status }}</td>
                                             
@@ -70,7 +70,7 @@
                                             <td>{{ $item->user_points }}</td>
                                             <td>{{ $item->user_email }}</td>
                                             <td>{{ $item->contactnumber }}</td>
-                                            <td>{{ $item->dep_id }}</td>    
+                                            <td>{{ $item->dep_name }}</td>    
                                             <td>{{ $item->role }}</td>
                                             <td>{{ $item->status }}</td>
                                            
@@ -120,19 +120,19 @@
         <label>Points:</label></br>
         <input type="text" name="user_points" id="user_points" class="form-control"></br>
 
-        <label for="dep_id">Department :</label></br>
-        <select name="dep_id" id="dep_id" name="dep_id"></br>
+        <label for="dep_name">Department :</label></br>
+        <select name="dep_name" id="dep_name" name="dep_name"></br>
         
         @php
                     $count = 1;
                 @endphp
                 @foreach($department as $item)
-                    @if(($count == 1) and (old('department') <> $item['dep_id']))
-                        <option value="{{ $item['dep_id'] }}" selected>{{ $item['dep_name'] }}</option>  
+                    @if(($count == 1) and (old('department') <> $item['dep_name']))
+                        <option value="{{ $item['dep_name'] }}" selected>{{ $item['dep_name'] }}</option>  
                     @elseif(old('dep_id') === $item['dep_id'])
-                        <option value="{{ $item['dep_id'] }}" selected>{{ $item['dep_name'] }}</option>     
+                        <option value="{{ $item['dep_name'] }}" selected>{{ $item['dep_name'] }}</option>     
                     @else
-                        <option value="{{ $item['dep_id'] }}">{{ $item['dep_name']}}</option>
+                        <option value="{{ $item['dep_name'] }}">{{ $item['dep_name']}}</option>
                     @endif
                     @php
                        $count++;
@@ -149,7 +149,7 @@
 
         <label for="status">Status :</label></br>
         <select name="status" id="status" name="status"></br>
-        <option value="Present">Present</option></br>
+        <option value="Present">Employed</option></br>
         <option value="Terminated">Terminated</option></br>
         </select></br>
 
