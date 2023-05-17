@@ -21,14 +21,14 @@
                     <li>
                         <a href="{{ url('dashboard') }}">
                             <button class="btn btn-info btn-sm" id="home-button">
-                                <a id="top-side-nav-icons-home">Home</a>
+                                <a id="top-side-nav-icons-home" href="{{ url('dashboard') }}">Home</a>
                             </button>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('logout') }}">
                             <button class="btn btn-info btn-sm" id="user-button">
-                                <a id="top-side-nav-icons-user">Logout</a>
+                                <a id="top-side-nav-icons-user" href="{{ url('logout') }}">Logout</a>
                             </button>
                         </a>
                     </li>
@@ -108,15 +108,14 @@
                     <div class="col">
                         <h3 class="ann-header">Announcements</h3>
                         <div class="content-list">
-                        <div class="container-tasks">	
-                            <div class="container-ann">    	
-                                @include('announcements.announcement_list')	
-                             </div>
-</div>
+                            <div class="container-tasks">	
+                                <div class="container-ann">    	
+                                    @include('announcements.announcement_list')	
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-            </div>          
+                </div>          
         </div>
     </body>
 </html>
@@ -259,6 +258,7 @@
         color: #FF7843;
         font-weight: bold;
         font-size: 17px;
+        text-decoration: none;
     }
 
     /* side nav bar */
