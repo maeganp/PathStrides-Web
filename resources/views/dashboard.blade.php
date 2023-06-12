@@ -15,28 +15,20 @@
     <body>
         <div class= "bg glass">
             <nav class="navbar navbar-expand-sm navbar-light" id="nav-top">
-                <a class="navbar-brand" href="#"><img src="{{ URL('images/pathstrides-white.png') }}" class="logo">   
-                <a class="navbar-brand" href="#" id="PathStrides-beside-logo" style="color: #FFFFFF">Pathstrides</a>
+                <a class="navbar-brand" href="#"><img src="{{ URL('images/finallogo.png') }}" class="logo">   
+                <a class="navbar-brand" href="#" id="PathStrides-beside-logo" style="color: #000000">Pathstrides</a>
                 <ul class="nav navbar-nav navbar-right" id="top-side-nav">
                     <li>
                         <a href="{{ url('dashboard') }}">
                             <button class="btn btn-info btn-sm" id="home-button">
-                                <i class="fa fa-home" id="top-side-nav-icons-home"></i>
+                                <a id="top-side-nav-icons-home" href="{{ url('dashboard') }}">Home</a>
                             </button>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="#">
-                            <button class="btn btn-info btn-sm" id="notif-button">
-                                <i class="fas fa-bell" id="top-side-nav-icons-notif"></i>
-                               
-                            </button>
-                        </a>
-                    </li> -->
                     <li>
                         <a href="{{ url('logout') }}">
                             <button class="btn btn-info btn-sm" id="user-button">
-                                <i class="fa fa-user-circle" id="top-side-nav-icons-user"></i>
+                                <a id="top-side-nav-icons-user" href="{{ url('logout') }}">Logout</a>
                             </button>
                         </a>
                     </li>
@@ -49,7 +41,19 @@
                     <div class="container-fluid" id="container-for-sidenav">
                         <nav class="navbar" id="nav-side">
                             <nav class="navbar" id="nav-side-inner">
+
+
+                            @if($admin_login!=null)
+                            <p class="logger" id="logger-name">{{$data2->admin_fname}} , {{$data2->admin_lname}}</p>
+                                    <p class="logger" id="logger-position">Admin</p>
+                                    <hr>
+                            @else
+                            <p class="logger" id="logger-name">{{$data->user_fname}}, {{$data->user_lname}} </p>
+                                    <p class="logger" id="logger-position">Manager</p>
+                                    <hr>
+                            @endif
                                 <ul class="navbar-nav">
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('announcement') }}" id="a-nav-side">
                                             <button class="btn btn-info btn-sm" id="side-nav-btn">
@@ -103,57 +107,21 @@
                                     </li>
                                 </ul>
                             </nav>
-                            <!-- <nav class="navbar" id="nav-side-inner">
-                                <ul class="navbar-nav">
-                                    <hr>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees-title">
-                                            <i class='fas'>&#xf091;</i>
-                                            Top Employees
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees">
-                                            <i class='fas'>&#xf005;</i>
-                                            Jessica Wilson
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees">
-                                            <i class='fas'>&#xf005;</i>
-                                            Ricardo Milos
-                                        </a>           
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#" id="top-employees">
-                                            <i class='fas'>&#xf005;</i>
-                                            Adonis Gibar
-                                        </a>
-                                     </li>
-                                </ul>
-                            </nav> -->
                         </nav>
                     </div>
                 </div>
                 <div class="contents-list">
                     <div class="col">
-                        <h3 class="ann-tasks">Announcements</h3>
-                        <div class="container-tasks">
-                            <div class="container-ann">    
-                                @include('announcements.announcement_list')
-                             </div>
+                        <h3 class="ann-header">Announcements</h3>
+                        <div class="content-list">
+                            <div class="container-tasks">	
+                                <div class="container-ann">    	
+                                    @include('announcements.announcement_list')	
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="contents-list">
-                <div class="col">
-                    <h3 class="graph-title">Task</h3>
-                    <div class="container-graph">
-                        <p>helloworld</p>    
-                    </div>
-                </div>
-                </div>
-            </div>          
+                </div>          
         </div>
     </body>
 </html>
@@ -197,18 +165,26 @@
 }
 
     body{
-        background-image: url("images/bg7.jpg");
+        background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
         background-size: cover;
         -webkit-backdrop-filter: brightness(20%);
     }
 
     hr{
-        border-color: white;
-        opacity: 20%;
+        border-color: black;
+        opacity: 40%;
     }
 
     h3{
-        color: white;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .ann-header{
+        bottom: 1em;
+        margin: 0;
+        
     }
 
     .bg{
@@ -221,12 +197,9 @@
     /* glass effect */
     .glass{
         
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background-color: white;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
     }
 
     /* .glass{
@@ -275,33 +248,23 @@
         right: 2em;
     }
 
-    #top-side-nav-icons-home{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
+    #top-side-nav-icons-home, #top-side-nav-icons-user{
+        color:black;
+        font-size: 15px;
+        margin-top: 1.5em;
     }
 
-    #top-side-nav-icons-notif{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
-    }
-    
-
-    #top-side-nav-icons-user{
-        color:#FFFFFF;
-        font-size: 30px;
-        margin-top: 0.5em;
-    }
-
-    #home-button, #notif-button, #user-button{
+    #home-button, #user-button{
         background-color: Transparent;
         background-repeat:no-repeat;
         border: none;
     }
     
-    #top-side-nav-icons-home:hover, #top-side-nav-icons-notif:hover, #top-side-nav-icons-user:hover{
+    #top-side-nav-icons-home:hover, #top-side-nav-icons-user:hover{
         color: #FF7843;
+        font-weight: bold;
+        font-size: 17px;
+        text-decoration: none;
     }
 
     /* side nav bar */
@@ -310,31 +273,48 @@
         margin: 0;
     }
 
+    .logger{
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+
+    #logger-name{
+        font-weight: bold;
+        font-size:16px;
+
+    }
+
+    #logger-position{
+        font-size: 14px;
+        color: #797979;
+    }
+
     #nav-side{
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        /* background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
+        backdrop-filter: blur(10px); */
+        /* -webkit-backdrop-filter: blur(10px);
         border-radius: 5px;
         border: 1px solid rgba(255, 255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-        width: 12vw;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); */
+        width: 13vw;
         height: 76vh;
         padding: 0;
     }
 
     
-    /* #nav-side-inner{
-        background-color: rgba(255, 255,255,0.05);
+    #nav-side-inner{
+       bottom: 6em;
         width: 15em;
         border-radius: 10px;
         display: block;
         clear: right;
         float: left;
-    } */
+    }
 
     #a-nav-side{
-        color: white;
-        font-weight: 600;
+        color: black;
+        /* font-weight: 600; */
     }
     
 
@@ -343,33 +323,20 @@
         background-repeat:no-repeat;
         border-width: 2px;
         border-color: Transparent;
-        font-size: 12.5px;
-        font-weight: bold;
+        font-size: 13px;
         /* padding: 0; */
+        color: #000;
     }
 
     #side-nav-btn:hover{
         border-radius: 5px;
         border-width: 2px;
         border-color: white;
-        color: #FF7843;
-        /* color: white; */
-        /* font-weight: bold; */
-        background-color: rgba(255, 255, 255, 1.0);
-    }
-
-
-    #top-employees-title{
-        margin: 0;
-        padding-bottom: 0.3em;
         color: white;
         font-size: 14px;
+        /* color: white; */
         font-weight: bold;
-    }
-
-    #top-employees{
-        font-size: 13px;
-        color: white;
+        background-color: #FF7843;
     }
 
     /* containers */
@@ -387,22 +354,27 @@
         max-height: 35vh;
         height: 35vh;
         margin: 7px;
+        border: 1px solid #959595;
     }
-
+    
+    .contents-list{
+        margin-bottom: 0;
+    }
     .container-announcements, .container-tasks{
-        background: linear-gradient(135deg, rgba(255, 255,255,0.1), rgba(255,255, 255,0));
+        /* background-color: #071E41; */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-radius: 5px;
-        border: 1px solid rgba(255, 255,255,0.1);
+        /* border: 1px solid  #071E41; */
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
         padding: 1em;
         display: inline-table;
         /* background-color: white; */
-        width: 35vw;
-        max-height: 35vh;
-        height: 35vh;
-        margin: 7px;
+        width: 75vw;
+       max-width: 75vw;
+        max-height: 69vh;
+        height: 69vh;
+        /* margin: 7px; */
     }
 
     .container-announcements, .container-graph{
@@ -415,7 +387,7 @@
         padding: 1em;
         display: inline-table;
         /* background-color: white; */
-        width: 35vw;
+        width: 75vw;
         max-height: 35vh;
         height: 35vh;
         margin: 7px;

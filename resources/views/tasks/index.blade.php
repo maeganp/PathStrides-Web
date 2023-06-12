@@ -4,23 +4,18 @@
 <div class="row" id="employee-container">
             <div class="col" id="employee-container">
                 <div class="card">
-                    <div class="card-header">
+                <div class="card-header">
                         <div class="row" id="card-header">
                             <div class="col">
                                 <h2 class="titles">Tasks</h2>
                             </div>
                         </div>
-                        @if($admin_login==null)
-                                    @else
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('department') }}" id="a-nav-side">
-                                            <button class="btn btn-info btn-sm" id="side-nav-btn">
-                                                <i class='fas'>&#xf19c;</i>
-                                                Departments
-                                            </button>
-                                        </a>
-                                    </li>
-                                    @endif
+
+                        <div class="col">
+                        <a onclick="$('#createTaskModal').modal('show')" class="add" title="Add New task">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
 

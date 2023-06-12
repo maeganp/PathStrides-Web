@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('item_code',45);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+            $table->boolean('isClaimed');
+            $table->boolean('isSold');
 
-            $table->foreign('user_id')->references('user_id')->on('users');
+           
         });
     }
 

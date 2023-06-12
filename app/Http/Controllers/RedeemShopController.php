@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use Session;
 use App\Models\User;
+use App\Models\Admin;
 class RedeemShopController extends Controller
 {
     /**
@@ -19,8 +20,13 @@ class RedeemShopController extends Controller
         if(Session::has('loginId')){
             $data = User::where('user_id','=',Session::get('loginId'))->first();
            }
+
+           if(Session::has('loginId')){
+            $data2 = Admin::where('admin_id','=',Session::get('loginId'))->first();
+
+        }
            $admin_login=Session::get('admin');
-        return view ('pointshop.index')->with('product', $product)->with('data',$data)->with('admin_login',$admin_login);
+        return view ('pointshop.index')->with('product', $product)->with('data',$data)->with('admin_login',$admin_login)->with('data2',$data2);
 
     }
 
@@ -48,6 +54,8 @@ class RedeemShopController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
+        $requestData['isClaimed'] = false;
+        $requestData['isSold'] = false;
         Shop::create($requestData);
         return redirect('pointshop')->with('flash_message', 'item Added!'); 
     }
@@ -109,5 +117,13 @@ class RedeemShopController extends Controller
         $list = new User();
         $list = $list->getUser();
         return response()->json($list);
+    }
+    public function getClaimed(Request $request){
+        //$user = auth()->user();
+        Shop::where('item_id', intval($request->id))->update(['isClaimed' => 1]);
+    }
+    public function getSold(Request $request){
+        //$user = auth()->user();
+        Shop::where('item_id', intval($request->id))->update(['isSold' => 1]);
     }
 }

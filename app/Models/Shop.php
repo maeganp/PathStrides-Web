@@ -9,8 +9,17 @@ class Shop extends Model
 {
     use HasFactory;
     protected $table = 'redeem_shop';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'item_id';
     protected $guarded = [];
+    protected $fillable = [
+        'item_id',
+        'item_name',
+        'points',
+        'item_code',
+        'user_id',
+        'isClaimed',
+        'isSold'
+    ];
 
     public function getRedeemShop(){
         return $this->get();

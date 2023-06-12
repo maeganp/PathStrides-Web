@@ -22,9 +22,14 @@ class DepartmentController extends Controller
        if(Session::has('loginId')){
         $data = User::where('user_id','=',Session::get('loginId'))->first();
        }
+
+       if(Session::has('loginId')){
+        $data2 = Admin::where('admin_id','=',Session::get('loginId'))->first();
+
+    }
        $admin_login=Session::get('admin');
 
-       return view ('departments.index')->with('departments', $departments)->with('data',$data)->with('admin_login',$admin_login);
+       return view ('departments.index')->with('departments', $departments)->with('data',$data)->with('admin_login',$admin_login)->with('data2',$data2);
    }
 
    public function getAll(){

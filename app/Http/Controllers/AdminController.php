@@ -25,7 +25,10 @@ class AdminController extends Controller
         $data = User::where('user_id','=',Session::get('loginId'))->first();
        }
 
-      
+        if(Session::has('loginId')){
+            $data2 = Admin::where('admin_id','=',Session::get('loginId'))->first();
+
+        }
 
        $department=Department::getDepartment(1);
        
@@ -36,7 +39,7 @@ class AdminController extends Controller
        
        
 
-       return view ('admin.index')->with('employee', $employee)->with('data',$data)->with('department',$department)->with('admin_id',$admin_id)->with('admin_login',$admin_login);
+       return view ('admin.index')->with('employee', $employee)->with('data',$data)->with('department',$department)->with('admin_id',$admin_id)->with('admin_login',$admin_login)->with('data2',$data2);
        
      
    }

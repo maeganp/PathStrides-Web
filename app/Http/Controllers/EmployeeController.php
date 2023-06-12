@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     public function index()
     {
         if(Session::has('loginId')){
-            $data = User::where('user_id','=',Session::get('loginId'))->first();
+        $data = User::where('user_id','=',Session::get('loginId'))->first();
         $employees=User::where('role','=','2');
         return view ('employees.index')->with('employees', $employees);
         }

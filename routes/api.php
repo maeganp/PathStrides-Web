@@ -34,6 +34,8 @@ Route::get('/employeePointShop','App\Http\Controllers\RedeemShopController@getRe
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/claimed','App\Http\Controllers\RedeemShopController@getClaimed');
+Route::post('/sold','App\Http\Controllers\RedeemShopController@getSold');
 
 Route::get('/show/{id}', 'App\Http\Controllers\ImageController@show');
 Route::post('/upload-image', 'App\Http\Controllers\ImageController@uploadImage');

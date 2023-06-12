@@ -27,8 +27,12 @@ class TaskController extends Controller
             $data = User::where('user_id','=',Session::get('loginId'))->first();
            }
 
+         if(Session::has('loginId')){
+            $data2 = Admin::where('admin_id','=',Session::get('loginId'))->first();
+
+        }
            $admin_login=Session::get('admin');
-        return view ('tasks.index')->with('tasks', $tasks)->with('data',$data)->with('employee',$employee)->with('admin_login',$admin_login);
+        return view ('tasks.index')->with('tasks', $tasks)->with('data',$data)->with('employee',$employee)->with('admin_login',$admin_login)->with('data2',$data2);
     }
 
     public function getAll(){
@@ -116,7 +120,7 @@ class TaskController extends Controller
         return redirect('task')->with('flash_message', 'task deleted!');
     }
 
-    public function getemployeeTask(){
+    public function getEmployeeTask(){
         //if($auth_id == $emp_id){
             $list = new Task();
             $list = $list->getemployeeTask();

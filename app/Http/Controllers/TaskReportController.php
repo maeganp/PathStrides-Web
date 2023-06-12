@@ -5,13 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TaskReport;
 use Session;
+use App\Models\User;
+use App\Models\Admin;
 class TaskReportController extends Controller
 {
     public function index()
     {
         $taskreport = TaskReport::all();
         $admin_login=Session::get('admin');
-        return view ('taskreport.index')->with('taskreport', $taskreport)->with('admin_login',$admin_login);
+
+        if(Session::has('loginId')){
+            $data = User::where('user_id','=',Session::get('loginId'))->first();
+           }
+
+         if(Session::has('loginId')){
+            $data2 = Admin::where('admin_id','=',Session::get('loginId'))->first();
+
+        }
+
+
+        return view ('taskreport.index')->with('taskreport', $taskreport)->with('admin_login',$admin_login)->with('data',$data)->with('data2',$data2);
     }
  
     /**
